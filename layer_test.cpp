@@ -83,23 +83,23 @@ int main(int argc, char **argv) {
     Func acc = softm->loss(Func(labels));
 
     // Schedule
-    pool->forward.compute_root().parallel(pool->n);
-    conv->forward.compute_root().parallel(conv->n);
-    conv->forward.update().parallel(conv->n).vectorize(conv->x, 4);
-    fc->forward.compute_root().parallel(fc->n);
-    fc->forward.update().parallel(fc->n);
-    softm->forward.compute_root();
-    conv->f_param_grads[0].compute_root();
-    conv->f_param_grads[0].update().parallel(conv->n);//.vectorize(conv->x, 4);
-    conv->f_param_grads[1].compute_root();
-    conv->f_in_grad.compute_root();
-    fc->f_param_grads[0].compute_root();
-    fc->f_param_grads[1].compute_root();
-    fc->f_in_grad.compute_root().parallel(fc->n);
-    fc->f_in_grad.update().parallel(fc->n);
-    pool->f_in_grad.compute_root().parallel(pool->n);
-    pool->f_in_grad.update().parallel(pool->n);
-    acc.compute_root();
+//    pool->forward.compute_root().parallel(pool->n);
+//    conv->forward.compute_root().parallel(conv->n);
+//    conv->forward.update().parallel(conv->n).vectorize(conv->x, 4);
+//    fc->forward.compute_root().parallel(fc->n);
+//    fc->forward.update().parallel(fc->n);
+//    softm->forward.compute_root();
+//    conv->f_param_grads[0].compute_root();
+//    conv->f_param_grads[0].update().parallel(conv->n);//.vectorize(conv->x, 4);
+//    conv->f_param_grads[1].compute_root();
+//    conv->f_in_grad.compute_root();
+//    fc->f_param_grads[0].compute_root();
+//    fc->f_param_grads[1].compute_root();
+//    fc->f_in_grad.compute_root().parallel(fc->n);
+//    fc->f_in_grad.update().parallel(fc->n);
+//    pool->f_in_grad.compute_root().parallel(pool->n);
+//    pool->f_in_grad.update().parallel(pool->n);
+//    acc.compute_root();
 
     conv->f_param_grads[0].print_loop_nest();
 
@@ -119,8 +119,8 @@ int main(int argc, char **argv) {
     Pipeline test(test_outs);
 
     // Loading the cifar db
-    string train_path="/home/ravi/Systems/caffe/examples/cifar10/cifar10_train_lmdb";
-    string test_path="/home/ravi/Systems/caffe/examples/cifar10/cifar10_test_lmdb";
+    string train_path="../caffe/examples/cifar10/cifar10_train_lmdb";
+    string test_path="../caffe/examples/cifar10/cifar10_test_lmdb";
         
     // Open the lmdb data base
     db::DB* cifar_db_train = db::GetDB("lmdb");

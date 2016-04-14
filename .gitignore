@@ -1,0 +1,9 @@
+.*
+!.gitignore
+
+*.o
+*.out
+*.out.dSYM
+
+*.pb.h
+*.pb.cc
